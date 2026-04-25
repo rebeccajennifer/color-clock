@@ -22,8 +22,7 @@
 !include legend.puml
 
 class ParticipantCtrl<<major>>
-enum  SwInputType <<enumeration>>
-class DS3231     <<api>>
+class DS3231         <<api>>
 
 '_______________________________________________________________________
 ParticipantCtrl *-down-   "8" MomentarySwitch
@@ -31,14 +30,13 @@ ParticipantCtrl o-down-   ColorClock
 
 ColorClock      o-down-   FluxClock
 ColorClock      *-down-   "*" RgbColor
-ColorClock      ..>       TimeCalcs
+ColorClock       .down.>  TimeCalcs
 
-note "Real-time clock module" as Note1
+note "Real-time clock API" as Note1
 FluxClock       *-down-   DS3231
 DS3231          ..        Note1
 
-MomentarySwitch --        SwInputType
-MomentarySwitch --        SwitchState
+MomentarySwitch *-down-   SwitchState
 
 RgbColor        --        HsvColor
 

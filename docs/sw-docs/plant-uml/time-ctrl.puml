@@ -1,10 +1,6 @@
 @startuml time-ctrl
 
 '_______________________________________________________________________
-' Style
-'_______________________________________________________________________
-
-'_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
 ' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
@@ -21,8 +17,6 @@ class TimeController      <<major>>
 class Adafruit_AlphaNum4  <<api>>
 class DS3231              <<api>>
 
-enum SwInputType <<enumeration>>
-
 TimeController  o-down-   FluxClock
 TimeController  o-down-   TimeDisplay
 TimeController  *-down-   "3" MomentarySwitch
@@ -33,9 +27,8 @@ FluxClock       *-down- DS3231
 DS3231           -down- Note1
 
 MomentarySwitch *-down- SwitchState
-MomentarySwitch  -down- SwInputType
 
-note "Adafruit display API" as Note2
+note "Alphanumeric display API" as Note2
 TimeDisplay        *-down- Adafruit_AlphaNum4
 Adafruit_AlphaNum4  -down- Note2
 

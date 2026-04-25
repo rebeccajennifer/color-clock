@@ -8,6 +8,12 @@
 !include style.puml
 hide members
 
+json "UML Relationships Legend" as uml_legend {
+  "Composition  -◆ "  : "I own you and you die with me.   "
+, "Aggregation  -◇ "  : "I have you but you can leave."
+, "Association  -  "  : "I talk to you as a peer / global."
+, "Dependency   --> " : "I use your static logic.         "
+}
 '_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
@@ -21,34 +27,35 @@ hide members
 ' <|.. Realization
 '_______________________________________________________________________
 
-class a <<legend-hide>>
-class b <<legend-hide>>
-class c <<legend-hide>>
-class d <<legend-hide>>
-class e <<legend-hide>>
-class f <<legend-hide>>
-class g <<legend-hide>>
+'class a <<legend-hide>>
+'class b <<legend-hide>>
+'class c <<legend-hide>>
+'class d <<legend-hide>>
+'class e <<legend-hide>>
+'class f <<legend-hide>>
+'class g <<legend-hide>>
+'
+'class Inheritance <<legend-show>>
+'class Association <<legend-show>>
+'class Directed    <<legend-show>>
+'class Composition <<legend-show>>
+'class Aggregation <<legend-show>>
+'class Dependency  <<legend-show>>
+'class Realization <<legend-show>>
+'
+'
+'a <|-left- Inheritance
+'b   -left- Association
+'c  <-left- Directed
+'d  *-left- Composition
+'e  o-left- Aggregation
+'f  <.left. Dependency
+'g <|.left. Realization
+'
+'Inheritance -[#white]- Association
+'Association -[#white]- Directed
+'Directed    -[#white]- Composition
+'Composition -[#white]- Aggregation
+'Aggregation -[#white]- Dependency
+'Dependency  -[#white]- Realization
 
-class Inheritance <<legend-show>>
-class Association <<legend-show>>
-class Directed    <<legend-show>>
-class Composition <<legend-show>>
-class Aggregation <<legend-show>>
-class Dependency  <<legend-show>>
-class Realization <<legend-show>>
-
-
-a <|-left- Inheritance
-b   -left- Association
-c  <-left- Directed
-d  *-left- Composition
-e  o-left- Aggregation
-f  <.left. Dependency
-g <|.left. Realization
-
-Inheritance -[#white]- Association
-Association -[#white]- Directed
-Directed    -[#white]- Composition
-Composition -[#white]- Aggregation
-Aggregation -[#white]- Dependency
-Dependency  -[#white]- Realization
