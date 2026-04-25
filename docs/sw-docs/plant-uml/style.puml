@@ -1,0 +1,101 @@
+@startuml color-clock-style
+
+'_______________________________________________________________________
+' Colors
+'_______________________________________________________________________
+' Apply background color: Use  $color_var_name  (colors defined w/ #)
+' Apply outline    color: Use #$color_var_name  (colors defined w/ #)
+'
+' e.g. class ClassName #$outline_color $bg_color
+'_______________________________________________________________________
+
+!$font_size_norm = "14"
+!$font_size_larg = "16"
+!$font_size_smll = "10"
+
+!$line_wght_norm = "2"
+!$line_wght_bold = "4"
+!$line_wght_lite = "1"
+
+!$clss_wdth_norm = "130"
+!$clss_wdth_bold = "175"
+
+' Hides the 'c' that appears next to classes
+hide circle
+
+skinparam ClassBackgroundColor  $bg_def_
+skinparam ClassBorderThickness  $line_wght_norm
+skinparam ClassBorderColor      $color_0
+
+skinparam Class {
+  ArrowColor      $fg_mute
+}
+
+skinparam ArrowThickness        1
+
+skinparam DefaultFontColor      $fg_def_
+skinparam DefaultFontName       "Monospaced"
+skinparam DefaultFontSize       $font_size_norm
+
+skinparam MinClassWidth         $clss_wdth_norm
+'skinparam backgroundcolor       transparent
+
+' Style groups of elements
+<style>
+note {
+  BackgroundColor $bg_def_
+  LineColor       $color_1
+  FontSize        $font_size_smll
+  LineThickness   $line_wght_lite
+  MinimumWidth    100
+}
+
+.major {
+  LineColor     $color_1
+  LineThickness $line_wght_bold
+  FontSize      $font_size_larg
+  MinimumWidth  $clss_wdth_bold
+}
+
+.enumeration {
+  LineThickness $line_wght_lite
+  LineColor     $color_3
+  FontSize      $font_size_smll
+}
+
+.api{
+  LineThickness $line_wght_lite
+  FontSize      $font_size_smll
+}
+
+.legend-hide {
+  BackgroundColor transparent
+  LineThickness 0
+  FontSize      0
+  MinimumWidth  10
+}
+
+.legend-show {
+  LineThickness   0
+  FontSize        $font_size_smll
+  BackgroundColor transparent
+  MinimumWidth    100
+  TextAlignment left
+}
+
+.arrw {
+  LineColor Green
+}
+
+</style>
+
+' Hides label <<>> in diagram
+hide <<major>>        stereotype
+hide <<api>>          stereotype
+hide <<legend-hide>>  stereotype
+hide <<legend-show>>  stereotype
+
+' Ortho spec breaks the smaller files
+skinparam Linetype              ortho
+
+@enduml

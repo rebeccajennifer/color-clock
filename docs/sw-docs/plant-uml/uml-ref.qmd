@@ -1,0 +1,131 @@
+---
+title: UML Reference
+description: >
+  An abbreviated reference for UML terminology.
+toc-depth: 6
+---
+
+UML, Unified Modeling Language, is a standardized visual representation used to describe various aspects of software architecture.
+This page contains reference material for basic implementation of UML.
+
+[Official UML Documentation](https://www.omg.org/spec/UML/)
+
+## Types of Diagrams
+
+### Structure Diagrams
+
+- Class Diagram
+- Object Diagram
+- Component Diagram
+- Composite Structure Diagram
+- Package Diagram
+- Deployment Diagram.
+
+### Behavior Diagrams
+
+- Use Case Diagram
+- Activity Diagram
+- State Machine Diagram.
+
+### Interaction Diagrams
+
+Derived from Behavior Diagram
+
+- Sequence Diagram
+- Communication Diagram
+- Timing Diagram
+- Interaction Overview Diagram
+
+## Class Diagram Terminology
+
+### Summary
+
+Relationship    |  Line Style | Arrowhead       | Lifecycle Logic
+-|-|-|-|-|
+**Composition** | Solid       | Filled diamond  | __Strong Ownership:__ I own you and you die with me.
+**Aggregation** | Solid       | Hollow diamond  | __Shared Ownership__  I have you but you can leave.
+**Association** | Solid       | Vee             | __Peer/Global:__      I talk to you as a peer / global.
+**Dependency**  | Dashed      | Vee             | __Transient:__        I use your static logic.
+
+### Association
+
+There are several types of Associations: the general Directed Association, and its specialized forms, Aggregation and Composition. An association exists when one class has a relationship with an _instance_ of another. These different types describe the lifecycle and ownership rules between those instances at runtime.
+
+__Example__
+
+#### Composition
+
+Composition is a subset of association and refers to a relationship between _instances_ of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent is the Composite (the whole), and the child is the Component (the part). Composition implies exclusive ownership; the component cannot be shared with other composites..
+
+__Arrowhead Representation__
+
+Solid diamond shape on the side of the parent.
+
+__Example__
+
+In this example, `Rabbit` is at the composite end of the relationship with `Ear` and `Tail`.
+
+@startuml
+!include style.puml
+hide members
+Rabbit *-- Ear
+Rabbit *-- Tail
+@enduml
+
+#### Aggregation
+
+Aggregation is a subset of association and refers to a relationship between _instances_ of classes. An aggregation relationship implies that each class can exist independently. The 'part' is shared and is often called Shared Aggregation. It signifies a collection where the parts have a lifecycle independent of the container.
+
+__Arrowhead Representation__
+
+Unfilled diamond on the side of the parent.
+
+__Example__
+
+@startuml
+!include style.puml
+hide members
+Jack o-- Rabbit
+Jill o-- Rabbit
+@enduml
+
+The rabbit will still exist if the human is deleted.
+
+#### Directed Association
+
+A directed association describes a relationship where one instance knows about another, but they are peers rather than a 'whole' and a 'part'. This is ideal for objects at the same architectural level or when a class interacts with a global instance.
+
+__Example__
+
+There exists a global object of type `PushButton` that is referenced in another object of type `UserInterface`. `UserInterface` does not own the `PushButton` object but interacts with it.
+
+@startuml
+!include style.puml
+hide members
+class UserInterface
+UserInterface --> PushButton
+@enduml
+
+### Dependency
+
+__Example__
+
+`DebugClass` is a class with all static methods. `ClassA` calls functions from `DebugClass` but there is no  `DebugClass` object.
+
+@startuml
+!include style.puml
+skinparam MinClassWidth 180
+
+hide circle
+hide fields
+
+class ClassA
+hide ClassA members
+
+class DebugClass{
+  +static void print_memory()
+}
+
+ClassA ..> DebugClass
+@enduml
+

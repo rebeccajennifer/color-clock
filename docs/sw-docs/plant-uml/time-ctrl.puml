@@ -1,0 +1,44 @@
+@startuml time-ctrl
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
+' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
+' --   Association, need to communicate, no strong relationship
+' -->  Directed Association, classA knows of classB, but not vice versa
+' *--  Composition
+' o--  Aggregation
+' ..>  Dependency
+' <|.. Realization
+'_______________________________________________________________________
+
+class TimeController      <<major>>
+class Adafruit_AlphaNum4  <<api>>
+class DS3231              <<api>>
+
+enum SwInputType <<enumeration>>
+
+TimeController  o-down-   FluxClock
+TimeController  o-down-   TimeDisplay
+TimeController  *-down-   "3" MomentarySwitch
+TimeController  *-down-   TimeSetState
+
+note "Real-time clock API" as Note1
+FluxClock       *-down- DS3231
+DS3231           -down- Note1
+
+MomentarySwitch *-down- SwitchState
+MomentarySwitch  -down- SwInputType
+
+note "Adafruit display API" as Note2
+TimeDisplay        *-down- Adafruit_AlphaNum4
+Adafruit_AlphaNum4  -down- Note2
+
+!include legend.puml
+
+@enduml

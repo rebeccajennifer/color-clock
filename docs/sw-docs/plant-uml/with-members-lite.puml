@@ -1,0 +1,7 @@
+@startuml color-clock-class-diagram-with-members-lite
+
+!include style-lite-colors.puml
+!include style.puml
+!include class-definitions.puml
+
+@enduml
