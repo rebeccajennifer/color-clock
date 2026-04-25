@@ -4,7 +4,6 @@
 ' Global params
 '_______________________________________________________________________
 
-!include style-lite-colors.puml
 !include style.puml
 hide members
 

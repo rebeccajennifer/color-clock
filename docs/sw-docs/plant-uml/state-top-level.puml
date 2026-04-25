@@ -1,0 +1,59 @@
+@startuml state-top-level
+!include style.puml
+
+hide empty description
+
+<style>
+root {
+  MinimumWidth 200
+}
+
+</style>
+
+skinparam Linetype              spline
+
+[*]   -right-> IDLE
+IDLE  -down-> SET_TIME
+
+state SET_TIME {
+  SET_YEAR --> SET_YEAR : <inc>/<dec>
+  SET_MNTH --> SET_MNTH : <inc>/<dec>
+  SET_DATE --> SET_DATE : <inc>/<dec>
+  SET_HOUR --> SET_HOUR : <inc>/<dec>
+  SET__MIN --> SET__MIN : <inc>/<dec>
+
+  SET_YEAR --> SET_MNTH : <enter>
+  SET_MNTH --> SET_DATE : <enter>
+  SET_DATE --> SET_HOUR : <enter>
+  SET_HOUR --> SET__MIN : <enter>
+  SET__MIN --> DONE     : <enter>
+  DONE     -up-> IDLE
+}
+
+'state ButtonPress
+'
+'NONE
+'LONG
+'SHORT
+'DOUBLE
+'TRIPLE
+
+'
+'    enum class InputType
+'    { NONE
+'      , LONG
+'      , SHORT
+'      , DOUBLE
+'      , TRIPLE
+'    };
+'
+'    enum class SwitchState
+'    { IDLE
+'      , PRESS
+'      , HOLD
+'      , RELEASE
+'      , WAIT
+'    };
+
+
+@enduml
