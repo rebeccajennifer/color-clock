@@ -1,0 +1,45 @@
+@startuml nine-eighty-alarm-base-uml
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
+' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
+' --   Association, need to communicate, no strong relationship
+' -->  Directed Association, classA knows of classB, but not vice versa
+' *--  Composition
+' o--  Aggregation
+' ..>  Dependency
+' <|.. Realization
+'_______________________________________________________________________
+
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+
+!include style-lite-colors.puml
+!include style.puml
+!include legend.puml
+
+class ParticipantCtrl<<major>>
+enum  SwInputType <<enumeration>>
+class DS3231     <<api>>
+
+'_______________________________________________________________________
+ParticipantCtrl *-down-   "8" MomentarySwitch
+ParticipantCtrl o-down-   ColorClock
+
+ColorClock      o-down-   FluxClock
+ColorClock      *-down-   "*" RgbColor
+ColorClock      ..>       TimeCalcs
+
+note "Real-time clock module" as Note1
+FluxClock       *-down-   DS3231
+DS3231          ..        Note1
+
+MomentarySwitch --        SwInputType
+MomentarySwitch --        SwitchState
+
+RgbColor        --        HsvColor
+
+@enduml

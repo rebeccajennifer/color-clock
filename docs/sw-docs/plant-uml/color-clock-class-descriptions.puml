@@ -1,0 +1,16 @@
+@startuml
+'_______________________________________________________________________
+' Class descriptions
+json "Class Description" as class_desc {
+  "TopLevel           " : ""
+, "ColorClock         " : ""
+, "FluxClock          " : ""
+, "ColorClock         " : ""
+, "TimeDisplay        " : ""
+, "TimeController     " : ""
+, "ParticipantCtrl    " : ""
+, "MomentarySwitch    " : "State logic for buttons."
+, "Adafruit_AlphaNum4 " : "Third party class to control LED display."
+, "DS3231             " : "Third party class to control RTC."
+}
+@enduml
