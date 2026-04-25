@@ -2,6 +2,7 @@
 
 !include style-lite-colors.puml
 !include style.puml
+!include legend.puml
 
 '_______________________________________________________________________
 ' Style Overrides
@@ -27,31 +28,27 @@ skinparam MinClassWidth         120
 hide members
 
 
-json "Class Description" as class_desc {
-  "TopLevel           " : ""
-, "ColorClock         " : "Light display mapping time to color."
-, "TimeDisplay        " : ""
-, "TimeController     " : ""
-, "ParticipantCtrl    " : "Logic for user interface control."
-, "MomentarySwitch    " : "State logic for buttons."
-, "FluxClock          " : "Wrapper class for real-time clock module."
-}
+'json "Class Description" as class_desc {
+'  "TopLevel           " : ""
+', "ColorClock         " : "Light display mapping time to color."
+', "TimeDisplay        " : ""
+', "TimeController     " : ""
+', "ParticipantCtrl    " : "Logic for user interface control."
+', "MomentarySwitch    " : "State logic for buttons."
+', "FluxClock          " : "Wrapper class for real-time clock module."
+'}
 
 note "Used for time set and\nparticipant control" as Note0
 
 MomentarySwitch ..     Note0
 
+TopLevel        *-down- TimeController
+TopLevel        *-down- ParticipantCtrl
+TopLevel        *-down- MomentarySwitch
 TopLevel        o-down- FluxClock
 TopLevel        o-down- TimeDisplay
-
-TopLevel        *-down- TimeController
-TopLevel        *-down- MomentarySwitch
 TopLevel        *-down- TopLevelState
-TopLevel        *-down- ParticipantCtrl
 
 TopLevel        -- ColorClock
-
-
-
 
 @enduml

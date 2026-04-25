@@ -1,55 +1,44 @@
 @startuml color-clock-class-definitions
 
-enum TopLevelState <<enumeration>> {
-  IDLE
-}
-
-enum TimeSetState <<enumeration>> {
-  IDLE
-  SET_YR
-  SET_MO
-  SET_DATE
-  SET_HR
-  SET_MIN
-  DONE
-}
-
-enum SwInputType <<enumeration>> {
-  NONE
-  LONG
-  SHORT
-  DOUBLE
-  TRIPLE
-}
-
-enum SwitchState <<enumeration>> {
-  IDLE
-  PRESS
-  HOLD
-  RELEASE
-  WAIT
-}
+!include style-lite-colors.puml
+!include style.puml
 
 class TopLevel {
-  - FluxClock* clock_
-  - TimeController time_ctrl_
+  - FluxClock*      clock_
+  - TimeController  time_ctrl_
   - ParticipantCtrl participant_intfc_
-  - State state_
+  - State           state_
+
+  - MomentarySwitch frq_inc_btn_;
+  - MomentarySwitch red_inc_btn_;
+  - MomentarySwitch grn_inc_btn_;
+  - MomentarySwitch blu_inc_btn_;
+
+  - MomentarySwitch frq_dec_btn_;
+  - MomentarySwitch red_dec_btn_;
+  - MomentarySwitch grn_dec_btn_;
+  - MomentarySwitch blu_dec_btn_;
+
   - map<ColorClock*, pin_map> cc_out_pin_map_
+
+  + void register_color_clock(ColorClock*, short, short, short);
+  + void run();
+}
+
+class TimeController {
+  - FluxClock*      clock_
+  - TimeDisplay*    display_
+  - MomentarySwitch inc_btn_
+  - MomentarySwitch dec_btn_
+  - MomentarySwitch enter_btn_
+  - State state_
 }
 
 class TimeDisplay {
   - Adafruit_AlphaNum4 led_segments
 }
 
-class TimeController {
-  - FluxClock* clock_
-  - TimeDisplay* display_
-  - MomentarySwitch inc_btn_
-  - MomentarySwitch dec_btn_
-  - MomentarySwitch enter_btn_
-  - State state_
-}
+
 
 class TimeCalcs {
   + static float get_time_as_fractional_offset(...)
@@ -75,15 +64,16 @@ class HsvColor {
 }
 
 class MomentarySwitch {
-  - int input_pin_
+  - int         input_pin_
   - SwitchState sw_state_type_
-  - int multi_input_count_
+  - int         multi_input_count_
+
   + debounce_input()
   + get_input_type()
 }
 
 class ParticipantCtrl {
-  - ColorClock* clock_
+  - ColorClock*      clock_
   - MomentarySwitch* frq_inc_btn_
   - MomentarySwitch* red_inc_btn_
   - MomentarySwitch* grn_inc_btn_
@@ -113,4 +103,33 @@ class ColorClock {
   - float   max_cycle_time_;
 }
 
+enum TopLevelState <<enumeration>> {
+  IDLE
+}
+
+enum TimeSetState <<enumeration>> {
+  IDLE
+  SET_YR
+  SET_MO
+  SET_DATE
+  SET_HR
+  SET_MIN
+  DONE
+}
+
+enum SwInputType <<enumeration>> {
+  NONE
+  LONG
+  SHORT
+  DOUBLE
+  TRIPLE
+}
+
+enum SwitchState <<enumeration>> {
+  IDLE
+  PRESS
+  HOLD
+  RELEASE
+  WAIT
+}
 @enduml
