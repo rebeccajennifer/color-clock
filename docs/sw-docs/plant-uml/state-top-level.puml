@@ -12,48 +12,46 @@ root {
 
 skinparam Linetype              spline
 
-[*]   -right-> IDLE
-IDLE  -down-> SET_TIME
+state TopLevel {
+  SYSTEM_IDLE  -down-> SET_TIME  : <enter>
 
-state SET_TIME {
-  SET_YEAR --> SET_YEAR : <inc>/<dec>
-  SET_MNTH --> SET_MNTH : <inc>/<dec>
-  SET_DATE --> SET_DATE : <inc>/<dec>
-  SET_HOUR --> SET_HOUR : <inc>/<dec>
-  SET__MIN --> SET__MIN : <inc>/<dec>
+  state SET_TIME {
+    SET_YEAR --> SET_YEAR : <inc>/<dec>
+    SET_MNTH --> SET_MNTH : <inc>/<dec>
+    SET_DATE --> SET_DATE : <inc>/<dec>
+    SET_HOUR --> SET_HOUR : <inc>/<dec>
+    SET__MIN --> SET__MIN : <inc>/<dec>
 
-  SET_YEAR --> SET_MNTH : <enter>
-  SET_MNTH --> SET_DATE : <enter>
-  SET_DATE --> SET_HOUR : <enter>
-  SET_HOUR --> SET__MIN : <enter>
-  SET__MIN --> DONE     : <enter>
-  DONE     -up-> IDLE
+    SET_YEAR --> SET_MNTH : <enter>
+    SET_MNTH --> SET_DATE : <enter>
+    SET_DATE --> SET_HOUR : <enter>
+    SET_HOUR --> SET__MIN : <enter>
+    SET__MIN --> DONE     : <enter>
+    DONE     -up-> SYSTEM_IDLE
+  }
 }
 
-'state ButtonPress
-'
-'NONE
-'LONG
-'SHORT
-'DOUBLE
-'TRIPLE
+state GetButtonPressType {
+  BTN_IDLE        --> PRESS    : button\lpressed
+  PRESS       --> HOLD
+  HOLD        --> RET_NONE
+  RET_NONE : Hold too short\nto register
 
-'
-'    enum class InputType
-'    { NONE
-'      , LONG
-'      , SHORT
-'      , DOUBLE
-'      , TRIPLE
-'    };
-'
-'    enum class SwitchState
-'    { IDLE
-'      , PRESS
-'      , HOLD
-'      , RELEASE
-'      , WAIT
-'    };
+  HOLD        --> RELEASE
+  RELEASE     --> RET_LONG : long \npress
+  RELEASE     --> WAIT     : short\npress
+  WAIT        --> PRESS    : new\lpress\n\ninc\nbtn\npress\ncount
 
+  WAIT        --> RET_SINGLE_PRESS
+  WAIT        --> RET_DOUBLE_PRESS
+  WAIT        --> RET_TRIPLE_PRESS
+
+  WAIT: Wait for another\npress to determine \nmulti-press input
+  'RET_SINGLE_PRESS -->  [*]
+  'RET_DOUBLE_PRESS -->  [*]
+  'RET_TRIPLE_PRESS -->  [*]
+  'RET_NONE         -->  [*]
+  'RET_LONG    --> [*]
+}
 
 @enduml

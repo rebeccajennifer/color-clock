@@ -68,8 +68,9 @@ stateDiagram {
   }
 
   arrow {
+    FontColor    $fg_mute
+    FontSize     $font_size_smll
     LineColor    $fg_mute
-    MaximumWidth 20
   }
 }
 .top-level {
