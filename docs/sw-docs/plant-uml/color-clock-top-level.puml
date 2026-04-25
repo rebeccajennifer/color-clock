@@ -1,15 +1,15 @@
 @startuml color-clock-top-level
 
-!include style-lite-colors.puml
 !include style.puml
-!include legend.puml
 
 '_______________________________________________________________________
 ' Style Overrides
 '_______________________________________________________________________
 
+class TopLevel       <<top-level>>
 class ParticipantCtrl<<major>>
 class TimeController <<major>>
+class ColorClock     <<major>>
 
 '_______________________________________________________________________
 ' Legend
@@ -39,16 +39,26 @@ hide members
 '}
 
 note "Used for time set and\nparticipant control" as Note0
-
 MomentarySwitch ..     Note0
+
+note "Wrapper for real-time\nclock module" as Note1
+FluxClock       ..     Note1
+
+note "Wrapper for alphanumeric\ntime set display" as Note2
+TimeDisplay     ..     Note2
+
+note "States for:\n- IDLE\n- TIME_SET\n- USER_CTRL" as Note3
+TopLevelState   ..     Note3
 
 TopLevel        *-down- TimeController
 TopLevel        *-down- ParticipantCtrl
-TopLevel        *-down- MomentarySwitch
-TopLevel        o-down- FluxClock
-TopLevel        o-down- TimeDisplay
-TopLevel        *-down- TopLevelState
 
-TopLevel        -- ColorClock
+TopLevel        o---     "*" ColorClock
+TopLevel        *-down--- "11" MomentarySwitch
+TopLevel        o-down--- FluxClock
+TopLevel        o-down--- TimeDisplay
+TopLevel        *-down--- TopLevelState
+
+!include legend.puml
 
 @enduml

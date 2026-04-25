@@ -17,7 +17,6 @@
 ' Style
 '_______________________________________________________________________
 
-!include style-lite-colors.puml
 !include style.puml
 !include legend.puml
 

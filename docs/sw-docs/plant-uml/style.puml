@@ -9,6 +9,8 @@
 ' e.g. class ClassName #$outline_color $bg_color
 '_______________________________________________________________________
 
+!include style-lite-colors.puml
+
 !$font_size_norm = "14"
 !$font_size_larg = "16"
 !$font_size_smll = "10"
@@ -31,6 +33,10 @@ skinparam Class {
   ArrowColor      $fg_mute
 }
 
+skinparam stateDiagram {
+  LineColor      $fg_mute
+}
+
 skinparam ArrowThickness        1
 
 skinparam DefaultFontColor      $fg_def_
@@ -42,12 +48,35 @@ skinparam MinClassWidth         $clss_wdth_norm
 
 ' Style groups of elements
 <style>
+root {
+  FontColor Black
+}
+
 note {
   BackgroundColor $bg_def_
   LineColor       $color_1
   FontSize        $font_size_smll
   LineThickness   $line_wght_lite
   MinimumWidth    100
+}
+
+stateDiagram {
+  state {
+    BackgroundColor $bg_def_
+    LineColor       $color_1
+    LineThickness   $line_wght_norm
+  }
+
+  arrow {
+    LineColor    $fg_mute
+    MaximumWidth 20
+  }
+}
+.top-level {
+  LineColor     $color_1
+  LineThickness $line_wght_bold
+  FontSize      $font_size_larg
+  MinimumWidth  800
 }
 
 .major {
@@ -94,6 +123,7 @@ hide <<major>>        stereotype
 hide <<api>>          stereotype
 hide <<legend-hide>>  stereotype
 hide <<legend-show>>  stereotype
+hide <<top-level>>    stereotype
 
 ' Ortho spec breaks the smaller files
 skinparam Linetype              ortho
