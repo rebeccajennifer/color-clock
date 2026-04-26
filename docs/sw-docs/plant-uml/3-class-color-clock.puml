@@ -1,7 +1,5 @@
 @startuml class-color-clock
 
-!include legend.puml
-
 '_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
@@ -14,14 +12,28 @@
 ' ---- Association, need to communicate, no strong relationship
 '_______________________________________________________________________
 
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+hide members
+
+class ColorClock  <<major>>
+class TimeCalcs   <<utility>>
 class DS3231 <<api>>
 
-ColorClock      o-down- FluxClock
-ColorClock      *-down- "*" RgbColor
+'_______________________________________________________________________
 ColorClock      ..>     TimeCalcs
+ColorClock      *-down- "*" RgbColor
+RgbColor        --      HsvColor
 
-note "Real-time clock module" as Note1
+ColorClock      o-down- FluxClock
 FluxClock       *-down- DS3231
+
+note "Real-time clock API" as Note1
 DS3231          ..      Note1
+
+!include legend.puml
 
 @enduml

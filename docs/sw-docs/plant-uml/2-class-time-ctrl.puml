@@ -1,5 +1,4 @@
 @startuml time-ctrl
-
 '_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
@@ -12,10 +11,17 @@
 ' ---- Association, need to communicate, no strong relationship
 '_______________________________________________________________________
 
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+hide members
+
 class TimeController      <<major>>
 class Adafruit_AlphaNum4  <<api>>
 class DS3231              <<api>>
 
+'_______________________________________________________________________
 TimeController  o-down-   FluxClock
 TimeController  o-down-   TimeDisplay
 TimeController  *-down-   "3" Button

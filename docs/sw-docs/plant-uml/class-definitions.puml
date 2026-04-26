@@ -1,12 +1,11 @@
 @startuml color-clock-class-definitions
 
-!include style-lite-colors.puml
 !include style.puml
 
 class TopLevel {
   - FluxClock*      clock_
   - TimeController  time_ctrl_
-  - ParticipantCtrl participant_intfc_
+  - UserCtrl        user_intfc_
   - State           state_
 
   - Button frq_inc_btn_;
@@ -28,22 +27,21 @@ class TopLevel {
 class TimeController {
   - FluxClock*      clock_
   - TimeDisplay*    display_
-  - Button inc_btn_
-  - Button dec_btn_
-  - Button enter_btn_
-  - State state_
+  - Button          inc_btn_
+  - Button          dec_btn_
+  - Button          enter_btn_
+  - State           state_
 }
 
 class TimeDisplay {
   - Adafruit_AlphaNum4 led_segments
 }
 
-
-
 class TimeCalcs {
   + static float get_time_as_fractional_offset(...)
   + static float get_hrs_since_midnight(...)
 }
+hide TimeCalcs fields
 
 class RgbColor {
   - map<PriColor, int> rgb_
@@ -72,7 +70,7 @@ class Button {
   + get_input_type()
 }
 
-class ParticipantCtrl {
+class UserCtrl {
   - ColorClock*      clock_
   - Button* frq_inc_btn_
   - Button* red_inc_btn_

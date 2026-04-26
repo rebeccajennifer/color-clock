@@ -19,7 +19,7 @@
 hide members
 
 class "TopLevel"        as TopLevel       <<top-level>>
-class "ParticipantCtrl" as ParticipantCtrl<<major>>
+class "UserCtrl"        as UserCtrl       <<major>>
 class "TimeController"  as TimeController <<major>>
 
 ' ✷ Corresponds with a note
@@ -39,7 +39,7 @@ note "States:\n- IDLE\n- TIME_SET" as Note3
 TopLevelState   ..     Note3
 
 TopLevel        *-down- TimeController
-TopLevel        *-down- ParticipantCtrl
+TopLevel        *-down- UserCtrl
 
 'ColorClock      ->       instantiate
 'FluxClock       ->       instantiate
