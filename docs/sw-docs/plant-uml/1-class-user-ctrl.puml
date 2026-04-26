@@ -12,28 +12,32 @@
 '_______________________________________________________________________
 
 !include legend.puml
+!include notes.puml
+hide btn_note
+hide time_disp_note
+hide instantiate_note
 
 '_______________________________________________________________________
 ' Style
 '_______________________________________________________________________
 !include style.puml
+hide members
 
 class ParticipantCtrl<<major>>
 class DS3231         <<api>>
 
 '_______________________________________________________________________
-ParticipantCtrl *-down-   "8" MomentarySwitch
+ParticipantCtrl *-down-   "8" Button
 ParticipantCtrl o-down-   ColorClock
 
 ColorClock      o-down-   FluxClock
 ColorClock      *-down-   "*" RgbColor
 ColorClock       .down.>  TimeCalcs
 
-note "Real-time clock API" as Note1
 FluxClock       *-down-   DS3231
-DS3231          ..        Note1
+DS3231          ..        flux_clock_note
 
-MomentarySwitch *-down-   SwitchState
+Button *-down-   SwitchState
 
 RgbColor        --        HsvColor
 

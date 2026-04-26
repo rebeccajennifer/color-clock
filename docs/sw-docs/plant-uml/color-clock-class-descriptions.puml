@@ -9,7 +9,7 @@ json "Class Description" as class_desc {
 , "TimeDisplay        " : ""
 , "TimeController     " : ""
 , "ParticipantCtrl    " : ""
-, "MomentarySwitch    " : "State logic for buttons."
+, "Button    " : "State logic for buttons."
 , "Adafruit_AlphaNum4 " : "Third party class to control LED display."
 , "DS3231             " : "Third party class to control RTC."
 }

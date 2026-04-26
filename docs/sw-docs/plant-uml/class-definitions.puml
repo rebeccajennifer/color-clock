@@ -9,15 +9,15 @@ class TopLevel {
   - ParticipantCtrl participant_intfc_
   - State           state_
 
-  - MomentarySwitch frq_inc_btn_;
-  - MomentarySwitch red_inc_btn_;
-  - MomentarySwitch grn_inc_btn_;
-  - MomentarySwitch blu_inc_btn_;
+  - Button frq_inc_btn_;
+  - Button red_inc_btn_;
+  - Button grn_inc_btn_;
+  - Button blu_inc_btn_;
 
-  - MomentarySwitch frq_dec_btn_;
-  - MomentarySwitch red_dec_btn_;
-  - MomentarySwitch grn_dec_btn_;
-  - MomentarySwitch blu_dec_btn_;
+  - Button frq_dec_btn_;
+  - Button red_dec_btn_;
+  - Button grn_dec_btn_;
+  - Button blu_dec_btn_;
 
   - map<ColorClock*, pin_map> cc_out_pin_map_
 
@@ -28,9 +28,9 @@ class TopLevel {
 class TimeController {
   - FluxClock*      clock_
   - TimeDisplay*    display_
-  - MomentarySwitch inc_btn_
-  - MomentarySwitch dec_btn_
-  - MomentarySwitch enter_btn_
+  - Button inc_btn_
+  - Button dec_btn_
+  - Button enter_btn_
   - State state_
 }
 
@@ -63,7 +63,7 @@ class HsvColor {
   + to_rgb()
 }
 
-class MomentarySwitch {
+class Button {
   - int         input_pin_
   - SwitchState sw_state_type_
   - int         multi_input_count_
@@ -74,10 +74,10 @@ class MomentarySwitch {
 
 class ParticipantCtrl {
   - ColorClock*      clock_
-  - MomentarySwitch* frq_inc_btn_
-  - MomentarySwitch* red_inc_btn_
-  - MomentarySwitch* grn_inc_btn_
-  - MomentarySwitch* blu_inc_btn_
+  - Button* frq_inc_btn_
+  - Button* red_inc_btn_
+  - Button* grn_inc_btn_
+  - Button* blu_inc_btn_
 }
 
 class FluxClock {
