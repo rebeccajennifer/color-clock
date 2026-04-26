@@ -1,11 +1,4 @@
-@startuml nine-eighty-alarm-base-uml
-
-'_______________________________________________________________________
-' Global params
-'_______________________________________________________________________
-
-!include style.puml
-hide members
+@startuml
 
 json "UML Relationships Legend" as uml_legend {
   "Composition  -◆ "  : "I own you and you die with me.   "
@@ -58,3 +51,4 @@ json "UML Relationships Legend" as uml_legend {
 'Aggregation -[#white]- Dependency
 'Dependency  -[#white]- Realization
 
+@enduml

@@ -3,14 +3,13 @@
 '_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
-' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
-' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
-' --   Association, need to communicate, no strong relationship
-' -->  Directed Association, classA knows of classB, but not vice versa
-' *--  Composition
-' o--  Aggregation
-' ..>  Dependency
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
 ' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
 '_______________________________________________________________________
 
 class TimeController      <<major>>
