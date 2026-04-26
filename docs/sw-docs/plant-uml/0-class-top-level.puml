@@ -16,41 +16,37 @@
 '_______________________________________________________________________
 !include style.puml
 !include notes.puml
+hide members
 
-class TopLevel       <<top-level>>
-class ParticipantCtrl<<major>>
-class TimeController <<major>>
-class ColorClock     <<major>>
+class "TopLevel"        as TopLevel       <<top-level>>
+class "ParticipantCtrl" as ParticipantCtrl<<major>>
+class "TimeController"  as TimeController <<major>>
+
+' ✷ Corresponds with a note
+class "ColorClock✷"     as ColorClock     <<major>>
+class "TimeDisplay✷"    as TimeDisplay
+class "FluxClock✷"      as FluxClock
 
 skinparam MinClassWidth         120
-hide members
 
 '_______________________________________________________________________
 
-
-'json "Class Description" as class_desc {
-'  "TopLevel           " : ""
-', "ColorClock         " : "Light display mapping time to color."
-', "TimeDisplay        " : ""
-', "TimeController     " : ""
-', "ParticipantCtrl    " : "Logic for user interface control."
-', "MomentarySwitch    " : "State logic for buttons."
-', "FluxClock          " : "Wrapper class for real-time clock module."
-'}
-
-'note "Used for time set and\nparticipant control" as Note0
-MomentarySwitch ..  btn_note
+Button          ..  btn_note
 FluxClock       ..  flux_clock_note
 TimeDisplay     ..  time_disp_note
 
-note "States for:\n- IDLE\n- TIME_SET" as Note3
+note "States:\n- IDLE\n- TIME_SET" as Note3
 TopLevelState   ..     Note3
 
 TopLevel        *-down- TimeController
 TopLevel        *-down- ParticipantCtrl
 
+'ColorClock      ->       instantiate
+'FluxClock       ->       instantiate
+'TimeDisplay     ->       instantiate
+
 TopLevel        o---     "4" ColorClock
-TopLevel        *-down--- "11" MomentarySwitch
+TopLevel        *-down--- "11" Button
 TopLevel        o-down--- FluxClock
 TopLevel        o-down--- TimeDisplay
 TopLevel        *-down--- TopLevelState

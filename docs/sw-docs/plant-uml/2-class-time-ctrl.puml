@@ -18,14 +18,14 @@ class DS3231              <<api>>
 
 TimeController  o-down-   FluxClock
 TimeController  o-down-   TimeDisplay
-TimeController  *-down-   "3" MomentarySwitch
+TimeController  *-down-   "3" Button
 TimeController  *-down-   TimeSetState
 
 note "Real-time clock API" as Note1
 FluxClock       *-down- DS3231
 DS3231           -down- Note1
 
-MomentarySwitch *-down- SwitchState
+Button *-down- SwitchState
 
 note "Alphanumeric display API" as Note2
 TimeDisplay        *-down- Adafruit_AlphaNum4
