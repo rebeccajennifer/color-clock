@@ -1,0 +1,27 @@
+@startuml class-color-clock
+
+!include legend.puml
+
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
+
+class DS3231 <<api>>
+
+ColorClock      o-down- FluxClock
+ColorClock      *-down- "*" RgbColor
+ColorClock      ..>     TimeCalcs
+
+note "Real-time clock module" as Note1
+FluxClock       *-down- DS3231
+DS3231          ..      Note1
+
+@enduml

@@ -1,15 +1,7 @@
-@startuml color-clock-style
+' Uncomment when rendering
+'skinparam backgroundcolor       transparent
 
-'_______________________________________________________________________
-' Colors
-'_______________________________________________________________________
-' Apply background color: Use  $color_var_name  (colors defined w/ #)
-' Apply outline    color: Use #$color_var_name  (colors defined w/ #)
-'
-' e.g. class ClassName #$outline_color $bg_color
-'_______________________________________________________________________
-
-!include style-lite-colors.puml
+!include style-colors-lite.puml
 
 !$font_size_norm = "14"
 !$font_size_larg = "16"
@@ -24,6 +16,7 @@
 
 ' Hides the 'c' that appears next to classes
 hide circle
+hide empty description
 
 skinparam ClassBackgroundColor  $bg_def_
 skinparam ClassBorderThickness  $line_wght_norm
@@ -44,12 +37,12 @@ skinparam DefaultFontName       "Monospaced"
 skinparam DefaultFontSize       $font_size_norm
 
 skinparam MinClassWidth         $clss_wdth_norm
-'skinparam backgroundcolor       transparent
 
 ' Style groups of elements
 <style>
 root {
   FontColor Black
+  FontColor $fg_def_
 }
 
 note {
@@ -128,5 +121,3 @@ hide <<top-level>>    stereotype
 
 ' Ortho spec breaks the smaller files
 skinparam Linetype              ortho
-
-@enduml

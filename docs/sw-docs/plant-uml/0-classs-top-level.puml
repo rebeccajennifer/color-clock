@@ -1,31 +1,31 @@
 @startuml color-clock-top-level
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
 
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
 !include style.puml
-
-'_______________________________________________________________________
-' Style Overrides
-'_______________________________________________________________________
+!include notes.puml
 
 class TopLevel       <<top-level>>
 class ParticipantCtrl<<major>>
 class TimeController <<major>>
 class ColorClock     <<major>>
 
-'_______________________________________________________________________
-' Legend
-'_______________________________________________________________________
-' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
-' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
-' --   Association, need to communicate, no strong relationship
-' -->  Directed Association, classA knows of classB, but not vice versa
-' *--  Composition
-' o--  Aggregation
-' ..>  Dependency
-' <|.. Realization
-'_______________________________________________________________________
-
 skinparam MinClassWidth         120
 hide members
+
+'_______________________________________________________________________
 
 
 'json "Class Description" as class_desc {
@@ -38,22 +38,18 @@ hide members
 ', "FluxClock          " : "Wrapper class for real-time clock module."
 '}
 
-note "Used for time set and\nparticipant control" as Note0
-MomentarySwitch ..     Note0
+'note "Used for time set and\nparticipant control" as Note0
+MomentarySwitch ..  btn_note
+FluxClock       ..  flux_clock_note
+TimeDisplay     ..  time_disp_note
 
-note "Wrapper for real-time\nclock module" as Note1
-FluxClock       ..     Note1
-
-note "Wrapper for alphanumeric\ntime set display" as Note2
-TimeDisplay     ..     Note2
-
-note "States for:\n- IDLE\n- TIME_SET\n- USER_CTRL" as Note3
+note "States for:\n- IDLE\n- TIME_SET" as Note3
 TopLevelState   ..     Note3
 
 TopLevel        *-down- TimeController
 TopLevel        *-down- ParticipantCtrl
 
-TopLevel        o---     "*" ColorClock
+TopLevel        o---     "4" ColorClock
 TopLevel        *-down--- "11" MomentarySwitch
 TopLevel        o-down--- FluxClock
 TopLevel        o-down--- TimeDisplay
