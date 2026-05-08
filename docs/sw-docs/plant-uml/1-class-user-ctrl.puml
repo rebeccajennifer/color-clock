@@ -11,7 +11,7 @@
 ' ---- Association, need to communicate, no strong relationship
 '_______________________________________________________________________
 
-!include legend.puml
+'!include legend.puml
 
 '_______________________________________________________________________
 ' Style
@@ -23,7 +23,7 @@ class UserCtrl  <<major>>
 class ColorClock<<major>>
 
 '_______________________________________________________________________
-UserCtrl        *-down-   "8" Button
+UserCtrl        o-down-   "8" Button
 UserCtrl        o-down-   ColorClock
 
 @enduml
