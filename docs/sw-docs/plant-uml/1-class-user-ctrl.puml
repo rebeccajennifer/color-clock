@@ -23,7 +23,7 @@ class UserCtrl  <<major>>
 class ColorClock<<major>>
 
 '_______________________________________________________________________
-UserCtrl        *-down-   "8" Button
+UserCtrl        o-down-   "8" Button
 UserCtrl        o-down-   ColorClock
 
 @enduml
