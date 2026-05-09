@@ -40,75 +40,75 @@ skinparam MinClassWidth         $clss_wdth_norm
 
 ' Style groups of elements
 <style>
-root {
-  FontColor Black
-  FontColor $fg_def_
-}
+  root {
+    FontColor Black
+    FontColor $fg_def_
+  }
 
-note {
-  BackgroundColor $bg_def_
-  LineColor       $color_1
-  FontSize        $font_size_smll
-  LineThickness   $line_wght_lite
-  MinimumWidth    100
-}
-
-stateDiagram {
-  state {
+  note {
     BackgroundColor $bg_def_
     LineColor       $color_1
-    LineThickness   $line_wght_norm
+    FontSize        $font_size_smll
+    LineThickness   $line_wght_lite
+    MinimumWidth    100
   }
 
-  arrow {
-    FontColor    $fg_mute
-    FontSize     $font_size_smll
-    LineColor    $fg_mute
+  stateDiagram {
+    state {
+      BackgroundColor $bg_def_
+      LineColor       $color_1
+      LineThickness   $line_wght_norm
+    }
+
+    arrow {
+      FontColor    $fg_mute
+      FontSize     $font_size_smll
+      LineColor    $fg_mute
+    }
   }
-}
-.top-level {
-  LineColor     $color_1
-  LineThickness $line_wght_bold
-  FontSize      $font_size_larg
-  MinimumWidth  800
-}
+  .top-level {
+    LineColor     $color_1
+    LineThickness $line_wght_bold
+    FontSize      $font_size_larg
+    MinimumWidth  800
+  }
 
-.major {
-  LineColor     $color_1
-  LineThickness $line_wght_bold
-  FontSize      $font_size_larg
-  MinimumWidth  $clss_wdth_bold
-}
+  .major {
+    LineColor     $color_1
+    LineThickness $line_wght_bold
+    FontSize      $font_size_larg
+    MinimumWidth  $clss_wdth_bold
+  }
 
-.enumeration {
-  LineThickness $line_wght_lite
-  LineColor     $color_3
-  FontSize      $font_size_smll
-}
+  .enumeration {
+    LineThickness $line_wght_lite
+    LineColor     $color_3
+    FontSize      $font_size_smll
+  }
 
-.api{
-  LineThickness $line_wght_lite
-  FontSize      $font_size_smll
-}
+  .api {
+    LineThickness $line_wght_lite
+    FontSize      $font_size_smll
+  }
 
-.legend-hide {
-  BackgroundColor transparent
-  LineThickness 0
-  FontSize      0
-  MinimumWidth  10
-}
+  .legend-hide {
+    BackgroundColor transparent
+    LineThickness 0
+    FontSize      0
+    MinimumWidth  10
+  }
 
-.legend-show {
-  LineThickness   0
-  FontSize        $font_size_smll
-  BackgroundColor transparent
-  MinimumWidth    100
-  TextAlignment left
-}
+  .legend-show {
+    LineThickness   0
+    FontSize        $font_size_smll
+    BackgroundColor transparent
+    MinimumWidth    100
+    TextAlignment left
+  }
 
-.arrw {
-  LineColor Green
-}
+  .arrw {
+    LineColor Green
+  }
 
 </style>
 

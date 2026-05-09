@@ -1,4 +1,4 @@
-@startuml time-ctrl
+@startuml
 '_______________________________________________________________________
 ' Legend
 '_______________________________________________________________________
@@ -37,6 +37,6 @@ note "Alphanumeric display API" as Note2
 TimeDisplay        *-down- Adafruit_AlphaNum4
 Adafruit_AlphaNum4  -down- Note2
 
-!include legend.puml
+'!include legend.puml
 
 @enduml

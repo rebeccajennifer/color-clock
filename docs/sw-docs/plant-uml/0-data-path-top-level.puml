@@ -1,4 +1,4 @@
-@startuml data-path-top-level
+@startuml
 
 !include style.puml
 

@@ -1,4 +1,4 @@
-@startuml state-top-level
+@startuml
 
 !include style.puml
 
@@ -38,7 +38,7 @@ state GetButtonPressType {
   BTN_IDLE        --> PRESS    : button\lpressed
   PRESS       --> HOLD
   HOLD        --> RET_NONE
-  RET_NONE : Hold too short\nto register
+  RET_NONE : Hold too short\nto register\npress
 
   HOLD        --> RELEASE
   RELEASE     --> RET_LONG : long \npress
