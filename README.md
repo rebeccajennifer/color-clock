@@ -19,8 +19,8 @@ interfaces with a real time clock module to keep accurate time.
 The blog about this project can be found
 [here](http://rebeccarashkin.com/color-clock).
 
-A slide deck that contains an overview of the project can be found
-[here](./docs/slide-decks/2024-08-10__demo/_color-clock-demo__2024-08-10.pdf)
+A slide deck outlining the hardware and software design:
+[here](./docs/slide-decks/2026-05-05__engineering-talk/color-clock-design__20260508.pdf)
 
 ## Description
 
