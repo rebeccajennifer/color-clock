@@ -1,0 +1,39 @@
+@startuml
+
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
+
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+hide members
+
+class ColorClock  <<major>>
+class TimeCalcs   <<utility>>
+class DS3231 <<api>>
+
+'_______________________________________________________________________
+ColorClock      ..>     TimeCalcs
+ColorClock      *-down- "*" RgbColor
+RgbColor        --      HsvColor
+
+ColorClock      o-down- FluxClock
+FluxClock       *-down- DS3231
+
+note "Real-time clock API" as Note1
+DS3231          ..      Note1
+
+!include legend.puml
+
+@enduml

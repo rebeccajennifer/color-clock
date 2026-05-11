@@ -1,0 +1,19 @@
+note as instantiate_note
+✷ Instantiated in main
+program driver
+end note
+
+note as btn_note
+Used for time set and
+participant control
+end note
+
+note as flux_clock_note
+Wrapper for real-time
+clock module
+end note
+
+note as time_disp_note
+Wrapper for alphanumeric
+time set display
+end note

@@ -1,0 +1,29 @@
+@startuml
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
+
+!include legend.puml
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+hide members
+
+class UserCtrl  <<major>>
+class ColorClock<<major>>
+
+'_______________________________________________________________________
+UserCtrl        o-down-   "8" Button
+UserCtrl        o-down-   ColorClock
+
+@enduml

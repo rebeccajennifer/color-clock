@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+hide empty description
+
+state time_to_color {
+
+  state "Read Current Time                  " as read_time
+  state "Current time between which indices?" as crnt_indices
+  state "Get times for bounding colors      " as bound_colors
+  state "Compute fractional offset          " as get_fractional_offset
+  state "Interpolate between colors         " as interpolate
+
+  read_time             -down-> crnt_indices
+  crnt_indices          -down-> bound_colors
+  bound_colors          -down-> get_fractional_offset
+  get_fractional_offset -down-> interpolate
+
+  state "    14:00    "         as ex_crnt_time
+  state "    [3,4]    "         as indices
+  state "12:00 : 16:00"         as times
+  state "fraction: 0.5"         as fraction
+
+  ' Symbol # doesn't show up properly and it can't be escaped
+  ' Using unicode for # instead
+  state "   <U+0023>0080FF   "  as ex_interpolate
+
+  ex_crnt_time -down[hidden]-> indices
+  indices      -down[hidden]-> times
+  times        -down[hidden]-> fraction
+  fraction     -down[hidden]-> ex_interpolate
+
+}
+
+@enduml

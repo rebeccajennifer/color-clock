@@ -1,0 +1,56 @@
+@startuml
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+!include notes.puml
+hide members
+
+class "TopLevel"        as TopLevel       <<top-level>>
+class "UserCtrl"        as UserCtrl       <<major>>
+class "TimeController"  as TimeController <<major>>
+
+' ✷ Corresponds with a note
+class "ColorClock✷"     as ColorClock     <<major>>
+class "TimeDisplay✷"    as TimeDisplay
+class "FluxClock✷"      as FluxClock
+
+skinparam MinClassWidth         120
+
+'_______________________________________________________________________
+
+Button          ..  btn_note
+FluxClock       ..  flux_clock_note
+TimeDisplay     ..  time_disp_note
+
+note "States:\n- IDLE\n- TIME_SET" as Note3
+TopLevelState   ..     Note3
+
+TopLevel        *-down- TimeController
+TopLevel        *-down- UserCtrl
+
+'ColorClock      ->       instantiate
+'FluxClock       ->       instantiate
+'TimeDisplay     ->       instantiate
+
+TopLevel        o---     "4" ColorClock
+TopLevel        *-down--- "11" Button
+TopLevel        o-down--- FluxClock
+TopLevel        o-down--- TimeDisplay
+TopLevel        *-down--- TopLevelState
+
+!include legend.puml
+
+@enduml

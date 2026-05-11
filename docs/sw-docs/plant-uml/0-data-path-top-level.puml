@@ -1,0 +1,32 @@
+@startuml
+
+!include style.puml
+
+'state "state machine" as state_machine
+
+state "Run TopLevel Function Flow"  as top_level_run
+
+state top_level_run {
+
+  state "Run User Ctrl" as user_ctrl_run
+  state user_ctrl_run {
+    get_user_input --> mod_colorclock
+  }
+
+  user_ctrl_run -right-> iterate
+
+  iterate : Iterate through array\lof ColorClock objects
+  iterate --> ColorClock.time_to_color
+
+  state ColorClock {
+    time_to_color : Map current time\lto RGB values
+    write_rgb     : Write RGB values\lto output pins
+    time_to_color --> write_rgb
+  }
+
+  state "State Machine"  as state_machine
+  state_machine   : Determine if in\ltime set state
+  ColorClock -right-> state_machine
+}
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' <|-- Inheritance, e.g. ParentClass --|> ChildClass
+' <|.. Realization
+' <... Dependency
+' <--- Directed Association, classA knows of classB, but not vice versa
+' *--- Composition
+' o--- Aggregation
+' ---- Association, need to communicate, no strong relationship
+'_______________________________________________________________________
+
+'_______________________________________________________________________
+' Style
+'_______________________________________________________________________
+!include style.puml
+hide members
+
+class TimeController      <<major>>
+class Adafruit_AlphaNum4  <<api>>
+class DS3231              <<api>>
+
+'_______________________________________________________________________
+TimeController  o-down-   FluxClock
+TimeController  o-down-   TimeDisplay
+TimeController  *-down-   "3" Button
+TimeController  *-down-   TimeSetState
+
+note "Real-time clock API" as Note1
+FluxClock       *-down- DS3231
+DS3231           -down- Note1
+
+Button *-down- SwitchState
+
+note "Alphanumeric display API" as Note2
+TimeDisplay        *-down- Adafruit_AlphaNum4
+Adafruit_AlphaNum4  -down- Note2
+
+'!include legend.puml
+
+@enduml

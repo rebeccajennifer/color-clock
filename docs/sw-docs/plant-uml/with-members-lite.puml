@@ -1,0 +1,6 @@
+@startuml color-clock-class-diagram-with-members
+
+!include style.puml
+!include class-definitions.puml
+
+@enduml

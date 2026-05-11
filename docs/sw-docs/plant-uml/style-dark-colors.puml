@@ -1,0 +1,20 @@
+@startuml style-nine-eighty-colors-dark
+
+'_______________________________________________________________________
+' Colors
+'_______________________________________________________________________
+' Apply background color: Use  $color_var_name  (colors defined w/ #)
+' Apply outline    color: Use #$color_var_name  (colors defined w/ #)
+'
+' e.g. class ClassName #$outline_color $bg_color
+'_______________________________________________________________________
+
+!$bg_def_= "#303030"
+!$fg_def_= "#eeeeee"
+!$fg_mute= "#a8a8a8"
+
+!$color_0= "#0087af"
+!$color_1= "#af87af"
+!$color_2= "#5fafaf"
+
+@enduml

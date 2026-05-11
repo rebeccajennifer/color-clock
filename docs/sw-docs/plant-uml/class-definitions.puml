@@ -1,0 +1,133 @@
+@startuml
+
+!include style.puml
+
+class TopLevel {
+  - FluxClock*      clock_
+  - TimeController  time_ctrl_
+  - UserCtrl        user_intfc_
+  - State           state_
+
+  - Button frq_inc_btn_;
+  - Button red_inc_btn_;
+  - Button grn_inc_btn_;
+  - Button blu_inc_btn_;
+
+  - Button frq_dec_btn_;
+  - Button red_dec_btn_;
+  - Button grn_dec_btn_;
+  - Button blu_dec_btn_;
+
+  - map<ColorClock*, pin_map> cc_out_pin_map_
+
+  + void register_color_clock(ColorClock*, short, short, short);
+  + void run();
+}
+
+class TimeController {
+  - FluxClock*      clock_
+  - TimeDisplay*    display_
+  - Button          inc_btn_
+  - Button          dec_btn_
+  - Button          enter_btn_
+  - State           state_
+}
+
+class TimeDisplay {
+  - Adafruit_AlphaNum4 led_segments
+}
+
+class TimeCalcs {
+  + static float get_time_as_fractional_offset(...)
+  + static float get_hrs_since_midnight(...)
+}
+hide TimeCalcs fields
+
+class RgbColor {
+  - map<PriColor, int> rgb_
+  - uint8_t max_red_
+  - uint8_t max_grn_
+  - uint8_t max_blu_
+  - uint8_t min_red_
+  - uint8_t min_grn_
+  - uint8_t min_blu_
+  - uint8_t mod_amt_
+}
+
+class HsvColor {
+  + float h
+  + float s
+  + float v
+  + to_rgb()
+}
+
+class Button {
+  - int         input_pin_
+  - SwitchState sw_state_type_
+  - int         multi_input_count_
+
+  + debounce_input()
+  + get_input_type()
+}
+
+class UserCtrl {
+  - ColorClock*      clock_
+  - Button* frq_inc_btn_
+  - Button* red_inc_btn_
+  - Button* grn_inc_btn_
+  - Button* blu_inc_btn_
+}
+
+class FluxClock {
+  DS3231 rtc_
+  + get_yr()
+  + get_month()
+  + get_day()
+  + get_hr()
+  + get_min()
+  + get_sec()
+}
+
+class ColorClock {
+  - FluxClock*        clock_
+  - vector<RgbColor>  init_color_selection_
+  - vector<RgbColor>  crnt_color_selection_
+  - vector<float>     color_times_
+  - int     lo_color_index_
+  - int     hi_color_index_
+  - double  cycle_time_in_hrs_
+  - float   mod_cycle_amt_;
+  - float   min_cycle_time_;
+  - float   max_cycle_time_;
+}
+
+enum TopLevelState <<enumeration>> {
+  IDLE
+}
+
+enum TimeSetState <<enumeration>> {
+  IDLE
+  SET_YR
+  SET_MO
+  SET_DATE
+  SET_HR
+  SET_MIN
+  DONE
+}
+
+enum SwInputType <<enumeration>> {
+  NONE
+  LONG
+  SHORT
+  DOUBLE
+  TRIPLE
+}
+
+enum SwitchState <<enumeration>> {
+  IDLE
+  PRESS
+  HOLD
+  RELEASE
+  WAIT
+}
+@enduml
